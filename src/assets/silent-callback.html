@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1024, initial-scale=1.0">
+    <title>Document</title>
+    <script src="/assets/js/oidc-client.min.js"></script>
+</head>
+<body>
+    <script>
+        const identityServerSettings = {
+            authority: 'https://localhost:4242/',
+            client_id: 'spa-client',
+            scope: 'openid profile projects-api',
+            response_type: 'code'
+        };
+        new Oidc.UserManager(identityServerSettings)
+        .signinSilentCallback()
+        .catch(error => {
+            console.error(error);
+        });
+    </script>
+</body>
+</html>

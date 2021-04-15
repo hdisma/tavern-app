@@ -3,7 +3,12 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  clientId: 'tavern-app',
+  clientRootPath: window.location.origin,
+  clientRoottt: window.location.origin,
+  authorityServer: 'https://localhost:5101/',
+  tavernApi: 'https://localhost:44385/'
 };
 
 /*
