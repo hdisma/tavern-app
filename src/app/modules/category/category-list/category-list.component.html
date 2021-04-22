@@ -1,0 +1,39 @@
+
+<br>
+
+ <div class="row">
+  <div class="col-xs-12">
+    <h1>Category List</h1>
+  </div>
+</div>
+
+<br>
+
+<div class="row">
+  <div class="col-xs-12">
+    <button class="btn btn-primary">
+      Add New Category
+    </button>
+  </div>
+</div>
+
+<br>
+
+<div *ngIf="categories && categories.length">
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let category of categories">
+        <td>{{category.id}}</td>
+        <td>{{category.name}}</td>
+        <td>{{category.description}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

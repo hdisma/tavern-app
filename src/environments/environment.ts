@@ -8,7 +8,7 @@ export const environment = {
   clientRootPath: window.location.origin,
   clientRoottt: window.location.origin,
   authorityServer: 'https://localhost:5101/',
-  tavernApi: 'https://localhost:44385/'
+  tavernApi: 'https://localhost:5001/'
 };
 
 /*

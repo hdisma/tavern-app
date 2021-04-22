@@ -6,9 +6,7 @@ import { User, UserManager, UserManagerSettings } from 'oidc-client';
 import { AsyncSubject, Observable, Subject } from 'rxjs';
 import { AuthContext } from '../models/auth-context';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class AuthService {
 
   private _userManager: UserManager;
@@ -27,7 +25,7 @@ export class AuthService {
       authority: environment.authorityServer,
       client_id: environment.clientId,
       redirect_uri: `${environment.clientRootPath}/signin-callback`,
-      scope: 'openid profile tavern-api',
+      scope: 'openid profile tavern-api.read tavern-api.write',
       response_type: 'code', // or in case of implicit flow use -> 'id_token token'
       post_logout_redirect_uri: `${environment.clientRootPath}/signout-callback`,
       automaticSilentRenew: true,
@@ -43,6 +41,7 @@ export class AuthService {
           this.loadSecurityContext();
       }
     });
+
   }
 
   public login(): Promise<void> {
@@ -111,7 +110,7 @@ export class AuthService {
       );
 
       // set to true AuthContext.userAuth properties based on permissions
-      this.authContext.permissions.map(p => {
+      this.authContext.permissions.forEach(p => {
         if(p.name in this.authContext.userAuth){
           let permission = p.name as keyof typeof UserAuth.prototype;
           this.authContext.userAuth[permission] = true;
